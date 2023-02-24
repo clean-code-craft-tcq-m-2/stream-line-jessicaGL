@@ -1,0 +1,17 @@
+name: Build and Run
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: build
+      run: gcc sender.c -o sender
+      
+    - name: run
+      run: ./sender
