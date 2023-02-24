@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 
@@ -7,7 +8,7 @@ char* out_format_TEST(int voltage[], int percent[], int index)
 {
     int Sensor;
     Sensor = (index % 2)+ 1;
-    char out_buffer[30];
+    char* out_buffer = malloc(30 * sizeof(char));
     
     sprintf(out_buffer,"S%d \t %d V \t   %d", Sensor, voltage[index], percent[index]);
     
@@ -21,7 +22,7 @@ int main()
     
     
     assert(strcmp(out_format_TEST(voltage, percent, 0),"S1 	 0 V 	   0") == 0);
-    assert(strcmp(out_format_TEST(voltage, percent, 50),"S2 	 12 V 	   100") == 0);
+    assert(strcmp(out_format_TEST(voltage, percent, 49),"S2 	 12 V 	   100") == 0);
     
     
     return 0;
